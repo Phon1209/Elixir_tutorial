@@ -31,9 +31,11 @@ mix compile
 
 ```bash
 iex -S mix
+# or
+mix iex
 ```
 
-- Run file
+- Run Particular Command
 
 ```bash
 mix run -e "Command"
