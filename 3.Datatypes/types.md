@@ -97,3 +97,46 @@ The same as Javascript
 1 === 1.0 # false
 1 !== 1.0 # true
 ```
+
+### String Special
+
+`?a` is to get the codepoint of a character
+
+```elixir
+?a # 97
+?a == 97 # true
+```
+
+or just use unicode
+
+```elixir
+"\u0061" == "a"
+```
+
+Note: String is a UTF-8 encoded binary.
+
+```elixir
+<<head::binary-size(2), rest::binary>> = <<0, 1, 2, 3>>
+<<0, 1, 2, 3>>
+
+head
+<<0, 1>>
+
+rest
+<<2, 3>>
+```
+
+The head:tail only check byte by byte, not character by character.
+So you need `::utf8` to tell what to expect.
+
+```elixir
+# ü is 2 bytes long in UTF-8
+<<x::utf8, rest::binary>> = "über"
+"über"
+
+x == ?ü
+true
+
+rest
+"ber"
+```

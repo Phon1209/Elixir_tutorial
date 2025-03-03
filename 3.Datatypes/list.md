@@ -49,10 +49,17 @@ list ++ [4]
 
 ## Charlist
 
-When Elixir sees a list of printable ASCII numbers, Elixir will print that as a charlist
+When Elixir sees a list of only printable ASCII numbers, Elixir will print that as a charlist
 
 ```elixir
 ~c"hello" # [104, 101, 108, 108, 111]
+```
+
+It's a list, so you can use the same functions as a list, but not string functions.
+
+```elixir
+~c"hello" ++ [0] # [104, 101, 108, 108, 111, 0]
+~c"hello" <> ~c"hi" # fail
 ```
 
 ## Tuple
