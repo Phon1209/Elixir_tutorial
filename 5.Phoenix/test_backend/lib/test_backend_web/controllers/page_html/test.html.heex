@@ -1,0 +1,15 @@
+<h1>Hello world</h1>
+
+<ul>
+<%= for thing <- @stuff do %>
+  <li> <%= thing.name %> </li>
+<% end %>
+</ul>
+
+
+<ul>
+<%= for thing <- @data do %>
+  <li> <%= thing.name %> => <%= thing.age %> </li>
+<% end %>
+</ul>
+

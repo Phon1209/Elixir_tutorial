@@ -11,8 +11,7 @@ defmodule TestBackend.Application do
       TestBackendWeb.Telemetry,
       TestBackend.Repo,
       {Ecto.Migrator,
-        repos: Application.fetch_env!(:test_backend, :ecto_repos),
-        skip: skip_migrations?()},
+       repos: Application.fetch_env!(:test_backend, :ecto_repos), skip: skip_migrations?()},
       {DNSCluster, query: Application.get_env(:test_backend, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: TestBackend.PubSub},
       # Start the Finch HTTP client for sending emails

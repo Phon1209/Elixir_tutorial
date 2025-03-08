@@ -2,22 +2,24 @@ defmodule TestBackendWeb.Router do
   use TestBackendWeb, :router
 
   pipeline :browser do
-    plug :accepts, ["html"]
-    plug :fetch_session
-    plug :fetch_live_flash
-    plug :put_root_layout, html: {TestBackendWeb.Layouts, :root}
-    plug :protect_from_forgery
-    plug :put_secure_browser_headers
+    plug(:accepts, ["html"])
+    plug(:fetch_session)
+    plug(:fetch_live_flash)
+    plug(:put_root_layout, html: {TestBackendWeb.Layouts, :root})
+    plug(:protect_from_forgery)
+    plug(:put_secure_browser_headers)
   end
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug(:accepts, ["json"])
   end
 
   scope "/", TestBackendWeb do
-    pipe_through :browser
+    pipe_through(:browser)
 
-    get "/", PageController, :home
+    get("/", PageController, :home)
+    get("/test", PageController, :test)
+    get("/data", PageController, :data)
   end
 
   # Other scopes may use custom stacks.
@@ -35,10 +37,14 @@ defmodule TestBackendWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/dev" do
-      pipe_through :browser
+      pipe_through(:browser)
 
-      live_dashboard "/dashboard", metrics: TestBackendWeb.Telemetry
-      forward "/mailbox", Plug.Swoosh.MailboxPreview
+      # live_dashboard is domain specific keyword from Phoenix.LiveDashboard.Router
+      live_dashboard("/dashboard", metrics: TestBackendWeb.Telemetry)
+
+      # forward will forward the request to the given module
+      # regardless of the type of request
+      forward("/mailbox", Plug.Swoosh.MailboxPreview)
     end
   end
 end

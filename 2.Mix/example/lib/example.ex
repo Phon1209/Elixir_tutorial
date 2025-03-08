@@ -16,4 +16,10 @@ defmodule Example do
     IO.puts("Hello world!")
     :world
   end
+
+  def hello2 do
+    # Calling the function does not require parentheses
+    # Last line is implicitly returned
+    "Hi there!"
+  end
 end

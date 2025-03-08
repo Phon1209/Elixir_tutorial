@@ -29,6 +29,8 @@ mix compile
 
 - Interactive Elixir shell
 
+This will compile the project code and open an interactive Elixir shell.
+
 ```bash
 iex -S mix
 # or
